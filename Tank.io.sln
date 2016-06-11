@@ -1,0 +1,23 @@
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2008
+
+Project("{6FE54364-167F-25F0-831F-D088DF7D8259}") = "Tank.io", "Assembly-CSharp.csproj", "{4E59141F-AAEA-54BA-A446-1481B7BF9A93}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4E59141F-AAEA-54BA-A446-1481B7BF9A93}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E59141F-AAEA-54BA-A446-1481B7BF9A93}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E59141F-AAEA-54BA-A446-1481B7BF9A93}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E59141F-AAEA-54BA-A446-1481B7BF9A93}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = Assembly-CSharp.csproj
+	EndGlobalSection
+EndGlobal
