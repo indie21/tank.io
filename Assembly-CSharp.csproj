@@ -45,8 +45,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\GameDefine.cs" />
-     <Compile Include="Assets\Player.cs" />
+     <Compile Include="Assets\Scripts\ByteBuf.cs" />
+     <Compile Include="Assets\Scripts\GameDefine.cs" />
+     <Compile Include="Assets\Scripts\GameManager.cs" />
+     <Compile Include="Assets\Scripts\Player.cs" />
+     <Compile Include="Assets\Scripts\ServerMessageManager.cs" />
+     <Compile Include="Assets\Scripts\Socket.cs" />
+     <Compile Include="Assets\Scripts\packet.cs" />
+     <Compile Include="Assets\Scripts\payload.cs" />
      <None Include="Assets\Plugins\protobuf-net\Web\TODO.txt" />
  <Reference Include="UnityEngine.Networking">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
