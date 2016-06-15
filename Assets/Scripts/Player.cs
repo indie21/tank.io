@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using proto.packet;
+using proto.payload;
 //using System.Collections;
 
 
@@ -47,14 +48,12 @@ public class Player : MonoBehaviour {
 
 
         if (Input.GetKey("c")){
-            GameManager._netSocket.Connect("127.0.0.1", 8881);
+            ServerMessage.Instance.Connect("127.0.0.1", 8881);
         }
 
-        if (Input.GetKey("s")) {
-            var packet = new packet();
-            // protoOut.Id = 10046;
-            // protoOut.name= "beitown";
-            // byte[] bytes = Serialize(protoOut);
+        if (Input.GetKey("f")) {
+            var agentLogin = new agent_login_req();
+            ServerMessage.Instance.Send<agent_login_req>(1001, agentLogin);
         }
 
     }

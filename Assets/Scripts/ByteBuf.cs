@@ -118,7 +118,7 @@ public class ByteBuf
 
     /**
      * 标记读
-     **/ 
+     **/
     public ByteBuf MarkReaderIndex()
     {
         markReader = readerIndex;
@@ -451,7 +451,7 @@ public class ByteBuf
 
     /**
      * 移动写指针
-     **/ 
+     **/
     public ByteBuf WriterIndex(int writerIndex)
     {
         if (writerIndex >= readerIndex && writerIndex <= len)

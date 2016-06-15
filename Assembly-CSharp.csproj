@@ -49,8 +49,7 @@
      <Compile Include="Assets\Scripts\GameDefine.cs" />
      <Compile Include="Assets\Scripts\GameManager.cs" />
      <Compile Include="Assets\Scripts\Player.cs" />
-     <Compile Include="Assets\Scripts\ServerMessageManager.cs" />
-     <Compile Include="Assets\Scripts\Socket.cs" />
+     <Compile Include="Assets\Scripts\ServerMessage.cs" />
      <Compile Include="Assets\Scripts\packet.cs" />
      <Compile Include="Assets\Scripts\payload.cs" />
      <None Include="Assets\Plugins\protobuf-net\Web\TODO.txt" />
