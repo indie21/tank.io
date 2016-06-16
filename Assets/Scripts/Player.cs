@@ -12,7 +12,6 @@ public class Player : MonoBehaviour {
     private Transform m_transform;
     public float _speed = 0.1f;
 
-
     void Test() {
     }
        // Use this for initialization
@@ -46,12 +45,11 @@ public class Player : MonoBehaviour {
             Move ();
         }
 
-
-        if (Input.GetKey("c")){
+        if (Input.GetKeyUp("c")){
             ServerMessage.Instance.Connect("127.0.0.1", 8881);
         }
 
-        if (Input.GetKey("f")) {
+        if (Input.GetKeyUp("f")) {
             var agentLogin = new agent_login_req();
             ServerMessage.Instance.Send<agent_login_req>(1001, agentLogin);
         }

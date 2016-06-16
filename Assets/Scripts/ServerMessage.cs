@@ -64,20 +64,24 @@ public class ServerMessage
         ProtoBuf.Serializer.Serialize<packet>(ms2, pack);
         data = ms2.ToArray();
 
+        // Monitor.Enter();
+
+
         if (status == SocketState.Closed) {
             return;
         }
 
-        ByteBuf buf = new ByteBuf(data.Length+4);
-        buf.WriteInt(data.Length);
-        buf.WriteBytes(data);
+        var bytebuf = new ByteBuf(data.Length+4);
+        bytebuf.WriteInt(data.Length);
+        bytebuf.WriteBytes(data);
 
         Debug.Log("send:"+data.Length);
-        clientSocket.BeginSend(buf.GetRaw(), 0, buf.GetRaw().Length,
+        clientSocket.BeginSend(bytebuf.GetRaw(), 0, bytebuf.GetRaw().Length,
                                SocketFlags.None,
                                null, clientSocket);
 
     }
+
 
     public void Connect(string ip, int port) {
 
@@ -106,9 +110,17 @@ public class ServerMessage
 
         status = SocketState.Connected;
 
-        var thread = new Thread(new ThreadStart(waitSocket));
-        thread.IsBackground = true;
-        thread.Start();
+        var threadSocket = new Thread(new ThreadStart(waitSocket));
+        threadSocket.IsBackground = true;
+        threadSocket.Start();
+
+        var threadProcess = new Thread(new ThreadStart(waitProcess));
+        threadProcess.IsBackground = true;
+        threadProcess.Start();
+    }
+
+    private void waitProcess() {
+        Event.Process(Event._handles_in);
     }
 
     // 异步收包线程.
@@ -127,7 +139,7 @@ public class ServerMessage
             len = clientSocket.Receive(buf.GetRaw(), 0, HEAD_SIZE,
                                        SocketFlags.None);
 
-            Debug.Log("receive length:"+ len);
+            // Debug.Log("receive length:"+ len);
 
             if(len<0)
             {
@@ -147,9 +159,12 @@ public class ServerMessage
             Debug.Log("receive length:" + len);
 
             Debug.Assert(payload_length == len);
-            string data = BitConverter.ToString(buf.GetRaw(), 0,
-                                                payload_length);
-            Debug.Log("receiver:" + data);
+            var ms2 = new MemoryStream(buf.GetRaw(),0,payload_length);
+            // string data = BitConverter.ToString(buf.GetRaw(), 0,
+            //                                     payload_length);
+
+            var protoPacket = ProtoBuf.Serializer.Deserialize<packet>(ms2);
+            Debug.Log("packet.cmd:"+protoPacket.cmd);
         }
     }
 
@@ -161,8 +176,5 @@ public class ServerMessage
         }
         clientSocket.Close();
     }
-
-
-
 
 };
