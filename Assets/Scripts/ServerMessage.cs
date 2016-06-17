@@ -117,10 +117,14 @@ public class ServerMessage
         var threadProcess = new Thread(new ThreadStart(waitProcess));
         threadProcess.IsBackground = true;
         threadProcess.Start();
+
     }
 
     private void waitProcess() {
-        Event.Process(Event._handles_in);
+        while (true) {
+            Event.ProcessIn();
+            Thread.Sleep(100);
+        }
     }
 
     // 异步收包线程.
@@ -156,15 +160,17 @@ public class ServerMessage
             len = clientSocket.Receive(buf.GetRaw(), 0, payload_length,
                                        SocketFlags.None);
 
-            Debug.Log("receive length:" + len);
+            // Debug.Log("receive length:" + len);
 
             Debug.Assert(payload_length == len);
             var ms2 = new MemoryStream(buf.GetRaw(),0,payload_length);
-            // string data = BitConverter.ToString(buf.GetRaw(), 0,
-            //                                     payload_length);
 
             var protoPacket = ProtoBuf.Serializer.Deserialize<packet>(ms2);
             Debug.Log("packet.cmd:"+protoPacket.cmd);
+
+            var eventname = MessageMap.GetEventName(protoPacket.cmd);
+            Event.FireOut(eventname, new object[]{protoPacket.payload});
+
         }
     }
 

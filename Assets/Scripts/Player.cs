@@ -50,9 +50,14 @@ public class Player : MonoBehaviour {
         }
 
         if (Input.GetKeyUp("f")) {
-            var agentLogin = new agent_login_req();
-            ServerMessage.Instance.Send<agent_login_req>(1001, agentLogin);
+            Event.FireIn("agent_login_req", new object[]{"good"});
         }
+
+
+        if (Input.GetKeyUp("j")) {
+            Event.FireIn("room_join_req", new object[]{});
+        }
+
 
     }
 

@@ -4,7 +4,6 @@ using System;
 using UnityEngine;
 
 
-
 /// <summary>
 /// in:
 /// 注册监听由渲染表现层抛出的事件(in = render->kbe)
@@ -16,6 +15,7 @@ using UnityEngine;
 /// 事件触发后就可以根据事件所附带的当前血量值来改变角色头顶的血条值。
 /// </summary>
 public static class Event  {
+
     public struct Pair {
         public object _obj;
         public string _funcname;
@@ -155,26 +155,66 @@ public static class Event  {
     }
 
 
-    public static void Process(HandleTable handles) {
+    public static void _process(HandleTable handles) {
+
         handles.Lock();
         if(handles._fired.Count>0){
             foreach(EventObj evt in handles._fired) {
                 handles._doing.AddLast(evt);
             }
+            handles._fired.Clear();
         }
         handles.UnLock();
 
         while(handles._doing.Count>0){
             EventObj eobj = handles._doing.First.Value;
+            Debug.Log("eobj:" + eobj._info._funcname);
             try {
                 eobj._info._method.Invoke(eobj._info._obj, eobj._args);
             }
             catch(Exception e){
-                Debug.Log("Event::processOutEvents: event=" + eobj._info._funcname + "\n" + e);
+                Debug.Log("Event::processOutEvents: event=" +
+                          eobj._info._funcname + "\n" + e);
             }
             handles._doing.RemoveFirst();
         }
 
     }
+
+    public static void FireIn(string eventname, object[] args) {
+        _fire(_handles_in, _handles_in._fired, eventname, args);
+    }
+
+    public static void FireOut(string eventname, object[] args) {
+        _fire(_handles_out, _handles_out._fired, eventname, args);
+    }
+
+    public static void ProcessIn() {
+        _process(_handles_in);
+    }
+
+    public static void ProcessOut() {
+        _process(_handles_out);
+    }
+
+
+    public static bool RegisterIn(string eventname, object obj, string funcname) {
+        return _register(_handles_in, eventname, obj, funcname);
+    }
+
+    public static bool UnRegisterIn(string eventname, object obj, string funcname) {
+        return _unregister(_handles_in, eventname, obj, funcname);
+    }
+
+    public static bool RegisterOut(string eventname, object obj, string funcname) {
+        return _register(_handles_out, eventname, obj, funcname);
+    }
+
+    public static bool UnRegisterOut(string eventname, object obj,
+                                     string funcname) {
+        return _unregister(_handles_out, eventname, obj, funcname);
+    }
+
+
 
 }

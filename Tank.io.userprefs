@@ -1,13 +1,16 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Event.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Plugins/protobuf-net/Serializer.cs">
     <Files>
-      <File FileName="Assets/Scripts/ServerMessage.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/ByteBuf.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/ServerMessage.cs" Line="165" Column="55" />
       <File FileName="Assets/Scripts/GameDefine.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/packet.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/GameManager.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/Player.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/Event.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/payload.cs" Line="1" Column="1" />
+      <File FileName="Assets/Plugins/protobuf-net/Serializer.cs" Line="75" Column="9" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
