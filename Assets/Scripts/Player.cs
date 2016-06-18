@@ -27,8 +27,6 @@ public class Player : MonoBehaviour {
             LevelUp ();
         }
 
-        Input.GetKey("w");
-
         if (Input.GetKey ("w")) {
             m_Move = Vector3.up * _speed;
             Move ();
@@ -43,19 +41,6 @@ public class Player : MonoBehaviour {
             m_Move = Vector3.right * _speed;
             Move ();
         }
-
-        if (Input.GetKeyUp("c")){
-            ServerMessage.Instance.Connect("127.0.0.1", 8881);
-        }
-
-        if (Input.GetKeyUp("f")) {
-            Event.FireIn("agent_login_req", new object[]{"good"});
-        }
-
-        if (Input.GetKeyUp("j")) {
-            Event.FireIn("room_join_req", new object[]{});
-        }
-
 
     }
 

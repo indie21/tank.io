@@ -55,6 +55,7 @@
      <Compile Include="Assets\Scripts\ModAgent.cs" />
      <Compile Include="Assets\Scripts\ModRoom.cs" />
      <Compile Include="Assets\Scripts\Player.cs" />
+     <Compile Include="Assets\Scripts\PlayerMove.cs" />
      <Compile Include="Assets\Scripts\ServerMessage.cs" />
      <Compile Include="Assets\Scripts\packet.cs" />
      <Compile Include="Assets\Scripts\payload.cs" />

@@ -5,7 +5,7 @@ using System.IO;
 using System.Net.Sockets;
 
 public class ModRoom  : MonoBehaviour {
-    public Transform m_transform;
+    public Transform _transform;
 
     private Transform boxHolder;
 
@@ -29,32 +29,36 @@ public class ModRoom  : MonoBehaviour {
         GameObject prefeb;
         GameObject go;
 
-        var box1 = Resources.Load("box1",typeof(GameObject)) as GameObject;
-        var box2 = Resources.Load("box2",typeof(GameObject)) as GameObject;
-        var box3 = Resources.Load("box3",typeof(GameObject)) as GameObject;
+        var playerPrefeb = Resources.Load("player",typeof(GameObject)) as GameObject;
+        var box1Prefeb = Resources.Load("box1",typeof(GameObject)) as GameObject;
+        var box2Prefeb = Resources.Load("box2",typeof(GameObject)) as GameObject;
+        var box3Prefeb = Resources.Load("box3",typeof(GameObject)) as GameObject;
 
-        var BoxArray = new GameObject[]{box1, box2, box3};
+        var BoxArray = new GameObject[]{box1Prefeb, box2Prefeb, box3Prefeb};
 
+        // 实例化box
         foreach(var box in RoomJonAck.boxs) {
-            Debug.Log("box "+box.type+" array size:");
-
-            if(BoxArray == null){
-                Debug.Log("BoxArray null");
-            }
-
             prefeb = BoxArray[box.type-1];
+            Debug.Log("prefeb:"+prefeb+ "box:" + box.type);
+            var pos = box.trans.position;
+            go = GameObject.Instantiate(prefeb,
+                                        new Vector3 (pos.x, pos.y, 0),
+                                        Quaternion.identity) as GameObject;
+            go.transform.SetParent(boxHolder);
+        }
 
-            if(prefeb == null){
-                Debug.Log("prefe null");
-            } else {
-                Debug.Log("prefeb:"+prefeb+ "box:" + box.type);
-				var pos = box.trans.position;
-                go = GameObject.Instantiate(prefeb,
-                                            new Vector3 (pos.x, pos.y, 0),
-                                            Quaternion.identity) as GameObject;
-                go.transform.SetParent(boxHolder);
+        // 实例化player
+        foreach(var player in RoomJonAck.players) {
+            var pos = player.trans.position;
+            go = GameObject.Instantiate(playerPrefeb,
+                                        new Vector3 (pos.x, pos.y, 0),
+                                        Quaternion.identity) as GameObject;
+            go.transform.SetParent(boxHolder);
+
+            if (player.player_id== GameManager._userId) {
+                var follow = GameObject.FindGameObjectWithTag ("MainCamera").GetComponent<Follow>();
+                follow.player = go.transform;
             }
-
         }
     }
 
@@ -63,7 +67,7 @@ public class ModRoom  : MonoBehaviour {
     }
 
     void Start () {
-        m_transform = GetComponent<Transform>();
+        _transform = GetComponent<Transform>();
     }
 
     void Update () {
