@@ -6,7 +6,7 @@ public class GameDefine : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        Debug.Log (_matrix.x);
+        Debug.Log(_matrix.x);
     }
 
     // Update is called once per frame

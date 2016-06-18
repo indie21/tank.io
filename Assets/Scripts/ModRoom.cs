@@ -33,7 +33,7 @@ public class ModRoom  : MonoBehaviour {
         var box2 = Resources.Load("box2",typeof(GameObject)) as GameObject;
         var box3 = Resources.Load("box3",typeof(GameObject)) as GameObject;
 
-        var BoxArray = new GameObject[]{box1,box2,box3};
+        var BoxArray = new GameObject[]{box1, box2, box3};
 
         foreach(var box in RoomJonAck.boxs) {
             Debug.Log("box "+box.type+" array size:");
@@ -48,8 +48,9 @@ public class ModRoom  : MonoBehaviour {
                 Debug.Log("prefe null");
             } else {
                 Debug.Log("prefeb:"+prefeb+ "box:" + box.type);
+				var pos = box.trans.position;
                 go = GameObject.Instantiate(prefeb,
-                                            new Vector3 (box.pos.x, box.pos.y, 0),
+                                            new Vector3 (pos.x, pos.y, 0),
                                             Quaternion.identity) as GameObject;
                 go.transform.SetParent(boxHolder);
             }

@@ -14,6 +14,7 @@ using UnityEngine;
 /// 通常由渲染表现层来注册, 例如：监听角色血量属性的变化， 如果UI层注册这个事件，
 /// 事件触发后就可以根据事件所附带的当前血量值来改变角色头顶的血条值。
 /// </summary>
+
 public static class Event  {
 
     public struct Pair {

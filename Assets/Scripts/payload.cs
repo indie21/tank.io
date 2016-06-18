@@ -95,6 +95,37 @@ namespace proto.payload
       { return global::ProtoBuf.Extensible.GetExtensionObject(ref extensionObject, createIfMissing); }
   }
   
+  [global::System.Serializable, global::ProtoBuf.ProtoContract(Name=@"transform")]
+  public partial class transform : global::ProtoBuf.IExtensible
+  {
+    public transform() {}
+    
+    private vector3 _position;
+    [global::ProtoBuf.ProtoMember(1, IsRequired = true, Name=@"position", DataFormat = global::ProtoBuf.DataFormat.Default)]
+    public vector3 position
+    {
+      get { return _position; }
+      set { _position = value; }
+    }
+    private vector3 _rotation;
+    [global::ProtoBuf.ProtoMember(2, IsRequired = true, Name=@"rotation", DataFormat = global::ProtoBuf.DataFormat.Default)]
+    public vector3 rotation
+    {
+      get { return _rotation; }
+      set { _rotation = value; }
+    }
+    private vector3 _movement;
+    [global::ProtoBuf.ProtoMember(3, IsRequired = true, Name=@"movement", DataFormat = global::ProtoBuf.DataFormat.Default)]
+    public vector3 movement
+    {
+      get { return _movement; }
+      set { _movement = value; }
+    }
+    private global::ProtoBuf.IExtension extensionObject;
+    global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+      { return global::ProtoBuf.Extensible.GetExtensionObject(ref extensionObject, createIfMissing); }
+  }
+  
   [global::System.Serializable, global::ProtoBuf.ProtoContract(Name=@"player")]
   public partial class player : global::ProtoBuf.IExtensible
   {
@@ -113,6 +144,13 @@ namespace proto.payload
     {
       get { return _name; }
       set { _name = value; }
+    }
+    private transform _trans;
+    [global::ProtoBuf.ProtoMember(3, IsRequired = true, Name=@"trans", DataFormat = global::ProtoBuf.DataFormat.Default)]
+    public transform trans
+    {
+      get { return _trans; }
+      set { _trans = value; }
     }
     private global::ProtoBuf.IExtension extensionObject;
     global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
@@ -145,12 +183,12 @@ namespace proto.payload
       get { return _hp; }
       set { _hp = value; }
     }
-    private vector3 _pos;
-    [global::ProtoBuf.ProtoMember(4, IsRequired = true, Name=@"pos", DataFormat = global::ProtoBuf.DataFormat.Default)]
-    public vector3 pos
+    private transform _trans;
+    [global::ProtoBuf.ProtoMember(4, IsRequired = true, Name=@"trans", DataFormat = global::ProtoBuf.DataFormat.Default)]
+    public transform trans
     {
-      get { return _pos; }
-      set { _pos = value; }
+      get { return _trans; }
+      set { _trans = value; }
     }
     private global::ProtoBuf.IExtension extensionObject;
     global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
@@ -193,20 +231,20 @@ namespace proto.payload
       get { return _room_id; }
       set { _room_id = value; }
     }
-    private readonly global::System.Collections.Generic.List<player> _players = new global::System.Collections.Generic.List<player>();
-    [global::ProtoBuf.ProtoMember(2, Name=@"players", DataFormat = global::ProtoBuf.DataFormat.Default)]
-    public global::System.Collections.Generic.List<player> players
-    {
-      get { return _players; }
-    }
-  
     private int _self_id;
-    [global::ProtoBuf.ProtoMember(3, IsRequired = true, Name=@"self_id", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
+    [global::ProtoBuf.ProtoMember(2, IsRequired = true, Name=@"self_id", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
     public int self_id
     {
       get { return _self_id; }
       set { _self_id = value; }
     }
+    private readonly global::System.Collections.Generic.List<player> _players = new global::System.Collections.Generic.List<player>();
+    [global::ProtoBuf.ProtoMember(3, Name=@"players", DataFormat = global::ProtoBuf.DataFormat.Default)]
+    public global::System.Collections.Generic.List<player> players
+    {
+      get { return _players; }
+    }
+  
     private readonly global::System.Collections.Generic.List<box> _boxs = new global::System.Collections.Generic.List<box>();
     [global::ProtoBuf.ProtoMember(4, Name=@"boxs", DataFormat = global::ProtoBuf.DataFormat.Default)]
     public global::System.Collections.Generic.List<box> boxs
@@ -264,6 +302,30 @@ namespace proto.payload
     {
       get { return _player_id; }
       set { _player_id = value; }
+    }
+    private global::ProtoBuf.IExtension extensionObject;
+    global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+      { return global::ProtoBuf.Extensible.GetExtensionObject(ref extensionObject, createIfMissing); }
+  }
+  
+  [global::System.Serializable, global::ProtoBuf.ProtoContract(Name=@"room_move_req")]
+  public partial class room_move_req : global::ProtoBuf.IExtensible
+  {
+    public room_move_req() {}
+    
+    private int _player_id;
+    [global::ProtoBuf.ProtoMember(1, IsRequired = true, Name=@"player_id", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
+    public int player_id
+    {
+      get { return _player_id; }
+      set { _player_id = value; }
+    }
+    private transform _trans;
+    [global::ProtoBuf.ProtoMember(2, IsRequired = true, Name=@"trans", DataFormat = global::ProtoBuf.DataFormat.Default)]
+    public transform trans
+    {
+      get { return _trans; }
+      set { _trans = value; }
     }
     private global::ProtoBuf.IExtension extensionObject;
     global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)

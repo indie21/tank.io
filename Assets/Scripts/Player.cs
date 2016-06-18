@@ -10,15 +10,15 @@ public class Player : MonoBehaviour {
     private Vector3 m_Move;
     private SpriteRenderer m_spriteRender;
     private Transform m_transform;
-    public float _speed = 0.1f;
+    public float _speed = 0.05f;
 
     void Test() {
     }
        // Use this for initialization
-    void Start () {
+    void Start ()  {
         m_spriteRender = GetComponent<SpriteRenderer> ();
         m_transform = GetComponent<Transform> ();
-        Debug.Log ("sprite render");        
+        Debug.Log ("sprite render");
     }
 
     // Update is called once per frame
@@ -51,7 +51,6 @@ public class Player : MonoBehaviour {
         if (Input.GetKeyUp("f")) {
             Event.FireIn("agent_login_req", new object[]{"good"});
         }
-
 
         if (Input.GetKeyUp("j")) {
             Event.FireIn("room_join_req", new object[]{});
