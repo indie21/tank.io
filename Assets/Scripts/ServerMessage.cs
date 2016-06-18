@@ -64,9 +64,6 @@ public class ServerMessage
         ProtoBuf.Serializer.Serialize<packet>(ms2, pack);
         data = ms2.ToArray();
 
-        // Monitor.Enter();
-
-
         if (status == SocketState.Closed) {
             return;
         }
@@ -75,7 +72,8 @@ public class ServerMessage
         bytebuf.WriteInt(data.Length);
         bytebuf.WriteBytes(data);
 
-        // Debug.Log("send:"+data.Length);
+        Debug.Log("Send:" + data.Length +"_"+ bytebuf.GetRaw().Length);
+
         clientSocket.BeginSend(bytebuf.GetRaw(), 0, bytebuf.GetRaw().Length,
                                SocketFlags.None,
                                null, clientSocket);

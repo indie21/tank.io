@@ -144,8 +144,6 @@ public static class Event  {
                               string eventname,
                               object[] args)
     {
-        Debug.Log("fire:"+ eventname);
-
         handles.Lock();
         List<Pair> lst;
 
@@ -168,8 +166,6 @@ public static class Event  {
 
 
     public static void _process(HandleTable handles) {
-
-        // Debug.Log("msg count "+ handles._fired.Count);
 
         handles.Lock();
         if(handles._fired.Count>0){

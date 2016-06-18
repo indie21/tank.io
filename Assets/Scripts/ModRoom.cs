@@ -3,17 +3,30 @@ using proto.payload;
 using UnityEngine;
 using System.IO;
 using System.Net.Sockets;
+using System.Collections.Generic;
 
 public class ModRoom  : MonoBehaviour {
-    public Transform _transform;
 
+    static GameObject playerPrefeb = Resources.Load("player",typeof(GameObject)) as GameObject;
+    static GameObject box1Prefeb = Resources.Load("box1",typeof(GameObject)) as GameObject;
+    static GameObject box2Prefeb = Resources.Load("box2",typeof(GameObject)) as GameObject;
+    static GameObject box3Prefeb = Resources.Load("box3",typeof(GameObject)) as GameObject;
+
+    public Transform _transform;
     private Transform boxHolder;
     private Transform playerHolder;
+
+    static private Dictionary<int, GameObject> playerMap = new Dictionary<int, GameObject>();
+    static private Dictionary<int, GameObject> boxMap  = new Dictionary<int, GameObject>();
 
     public void RegisterEvent() {
         Event.RegisterIn("room_join_req", this, "JoinReq");
         Event.RegisterIn("room_move_req", this, "MoveReq");
+
         Event.RegisterOut("room_join_ack", this, "JoinAck");
+        Event.RegisterOut("room_join_ntf", this, "JoinNtf");
+        Event.RegisterOut("room_leave_ntf", this, "LeaveNtf");
+        Event.RegisterOut("room_move_ntf", this, "MoveNtf");
     }
 
     public void JoinReq() {
@@ -32,11 +45,6 @@ public class ModRoom  : MonoBehaviour {
 
         GameObject prefeb;
         GameObject go;
-
-        var playerPrefeb = Resources.Load("player",typeof(GameObject)) as GameObject;
-        var box1Prefeb = Resources.Load("box1",typeof(GameObject)) as GameObject;
-        var box2Prefeb = Resources.Load("box2",typeof(GameObject)) as GameObject;
-        var box3Prefeb = Resources.Load("box3",typeof(GameObject)) as GameObject;
 
         var BoxArray = new GameObject[]{box1Prefeb, box2Prefeb, box3Prefeb};
 
@@ -61,8 +69,15 @@ public class ModRoom  : MonoBehaviour {
             go = GameObject.Instantiate(playerPrefeb,
                                         new Vector3 (pos.x, pos.y, 0),
                                         Quaternion.identity) as GameObject;
+
             go.transform.SetParent(boxHolder);
             go.GetComponent<Player>().SendMessage("SetPlayerId", player.player_id);
+
+            if(playerMap==null){
+                Debug.Log("player map is null");
+            }
+
+            playerMap.Add(player.player_id, go);
 
             if (player.player_id== GameManager._userId) {
                 var follow = GameObject.FindGameObjectWithTag("MainCamera").
@@ -74,8 +89,8 @@ public class ModRoom  : MonoBehaviour {
     }
 
     public void MoveReq(proto.payload.transform trans) {
-        Debug.Log("moveReq");
 
+        Debug.Log("moveReq");
         var roomMoveReq = new room_move_req();
         roomMoveReq.player_id = GameManager._userId;
         roomMoveReq.trans = trans;
@@ -83,17 +98,55 @@ public class ModRoom  : MonoBehaviour {
 
     }
 
-    void Awake () {
-        boxHolder = new GameObject("boxHolder").transform;
-        playerHolder = new GameObject("playerHolder").transform;
+    public void JoinNtf(byte[] ackBin) {
+        var ms2 = new MemoryStream(ackBin, 0, ackBin.Length);
+        var RoomJoinNtf = ProtoBuf.Serializer.Deserialize<room_join_ntf>(ms2);
+
+        var player = RoomJoinNtf.player;
+
+        var pos = player.trans.position;
+        GameObject go = GameObject.Instantiate(playerPrefeb,
+                                               new Vector3 (pos.x, pos.y, 0),
+                                               Quaternion.identity) as GameObject;
+        go.transform.SetParent(boxHolder);
+        go.GetComponent<Player>().SendMessage("SetPlayerId", player.player_id);
+
+        playerMap.Add(player.player_id, go);
+
+        Debug.Log("JoinNtf:"+ player.player_id);
+    }
+
+    public void LeaveNtf(byte[] ackBin) {
+        var ms2 = new MemoryStream(ackBin, 0, ackBin.Length);
+        var RoomLeaveNtf = ProtoBuf.Serializer.Deserialize<room_leave_ntf>(ms2);
+        var player_id =  RoomLeaveNtf.player_id;
+        GameObject go;
+
+        if(playerMap.TryGetValue(player_id, out go)) {
+            Destroy(go);
+        }
+
+        Debug.Log("LeaveNtf:" + player_id);
+    }
+
+    public void MoveNtf(byte[] ackBin) {
+        var ms2 = new MemoryStream(ackBin, 0, ackBin.Length);
+        var RoomMoveNtf = ProtoBuf.Serializer.Deserialize<room_move_ntf>(ms2);
+
+        Debug.Log("MoveNtf");
     }
 
     void Start () {
         _transform = GetComponent<Transform>();
+
+        Debug.Log("what the fuck");
+        boxHolder = new GameObject("boxHolder").transform;
+        // boxHolder.SetParent(_transform);
+        playerHolder = new GameObject("playerHolder").transform;
+        // playerHolder.SetParent(_transform);
     }
 
     void Update () {
-
     }
 
 }
