@@ -13,8 +13,9 @@ public class ModRoom  : MonoBehaviour {
     static GameObject box3Prefeb = Resources.Load("box3",typeof(GameObject)) as GameObject;
 
     public Transform _transform;
-    private Transform boxHolder;
-    private Transform playerHolder;
+
+    static private GameObject boxHolder;
+    static private GameObject playerHolder;
 
     static private Dictionary<int, GameObject> playerMap = new Dictionary<int, GameObject>();
     static private Dictionary<int, GameObject> boxMap  = new Dictionary<int, GameObject>();
@@ -60,7 +61,6 @@ public class ModRoom  : MonoBehaviour {
             var moveMent = new Vector3(move.x, move.y, move.z);
             go.GetComponent<Box>().SendMessage("SetMove", moveMent);
             go.GetComponent<Box>().SendMessage("SetSpeed", box.trans.speed);
-            // go.GetComponent<Transform>().SendMessage("SetParent", boxHolder);
         }
 
         // 实例化player
@@ -70,7 +70,7 @@ public class ModRoom  : MonoBehaviour {
                                         new Vector3 (pos.x, pos.y, 0),
                                         Quaternion.identity) as GameObject;
 
-            go.transform.SetParent(boxHolder);
+            go.transform.SetParent(boxHolder.transform);
             go.GetComponent<Player>().SendMessage("SetPlayerId", player.player_id);
 
             if(playerMap==null){
@@ -108,7 +108,7 @@ public class ModRoom  : MonoBehaviour {
         GameObject go = GameObject.Instantiate(playerPrefeb,
                                                new Vector3 (pos.x, pos.y, 0),
                                                Quaternion.identity) as GameObject;
-        go.transform.SetParent(boxHolder);
+        go.transform.SetParent(boxHolder.transform);
         go.GetComponent<Player>().SendMessage("SetPlayerId", player.player_id);
 
         playerMap.Add(player.player_id, go);
@@ -139,11 +139,10 @@ public class ModRoom  : MonoBehaviour {
     void Start () {
         _transform = GetComponent<Transform>();
 
+        boxHolder = new GameObject("boxHolder");
+        playerHolder = new GameObject("playerHolder");
+
         Debug.Log("what the fuck");
-        boxHolder = new GameObject("boxHolder").transform;
-        // boxHolder.SetParent(_transform);
-        playerHolder = new GameObject("playerHolder").transform;
-        // playerHolder.SetParent(_transform);
     }
 
     void Update () {
