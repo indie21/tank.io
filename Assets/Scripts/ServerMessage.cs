@@ -75,7 +75,7 @@ public class ServerMessage
         bytebuf.WriteInt(data.Length);
         bytebuf.WriteBytes(data);
 
-        Debug.Log("send:"+data.Length);
+        // Debug.Log("send:"+data.Length);
         clientSocket.BeginSend(bytebuf.GetRaw(), 0, bytebuf.GetRaw().Length,
                                SocketFlags.None,
                                null, clientSocket);
@@ -124,6 +124,7 @@ public class ServerMessage
         while (true) {
             Event.ProcessIn();
             Thread.Sleep(100);
+            // Debug.Log("process in");
         }
     }
 
@@ -166,8 +167,7 @@ public class ServerMessage
             var ms2 = new MemoryStream(buf.GetRaw(),0,payload_length);
 
             var protoPacket = ProtoBuf.Serializer.Deserialize<packet>(ms2);
-            Debug.Log("packet.cmd:"+protoPacket.cmd);
-
+            Debug.Log("receive packet.cmd:"+protoPacket.cmd);
             var eventname = MessageMap.GetEventName(protoPacket.cmd);
             Event.FireOut(eventname, new object[]{protoPacket.payload});
 

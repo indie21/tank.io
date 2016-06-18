@@ -91,6 +91,7 @@ public static class Event  {
         pair._method = obj.GetType().GetMethod(funcname);
 
         if(pair._method == null) {
+            Debug.Log("funcname not exist: "+ eventname + " " +funcname);
             return false;
         }
 
@@ -143,6 +144,8 @@ public static class Event  {
                               string eventname,
                               object[] args)
     {
+        Debug.Log("fire:"+ eventname);
+
         handles.Lock();
         List<Pair> lst;
 
@@ -150,6 +153,8 @@ public static class Event  {
             handles.UnLock();
             return;
         }
+
+        Debug.Log("fire 1:"+ eventname);
 
         for (int i = 0; i< lst.Count; i++) {
             var eobj = new EventObj();
@@ -164,6 +169,8 @@ public static class Event  {
 
     public static void _process(HandleTable handles) {
 
+        // Debug.Log("msg count "+ handles._fired.Count);
+
         handles.Lock();
         if(handles._fired.Count>0){
             foreach(EventObj evt in handles._fired) {
@@ -175,7 +182,7 @@ public static class Event  {
 
         while(handles._doing.Count>0){
             EventObj eobj = handles._doing.First.Value;
-            Debug.Log("eobj:" + eobj._info._funcname);
+            Debug.Log("process msg : "+ eobj._info._funcname);
             try {
                 eobj._info._method.Invoke(eobj._info._obj, eobj._args);
             }
