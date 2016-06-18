@@ -8,7 +8,9 @@ public class Player : MonoBehaviour {
 
     private int m_level = 1;
     private static Vector3 z_Move = new Vector3(0,0,0);
-    private Vector3 m_Move;
+
+    public Vector3 _Move;
+
     private SpriteRenderer m_spriteRender;
     private Transform m_transform;
     public float _speed = 0.05f;
@@ -34,19 +36,19 @@ public class Player : MonoBehaviour {
             LevelUp ();
         }
 
-        m_transform.position += m_Move*_speed;
+        m_transform.position += _Move*_speed;
     }
 
     void SetMove(Vector3 vec3) {
-        if(m_Move != vec3){
-            m_Move = vec3;
+        if(_Move != vec3){
+            _Move = vec3;
             FireMoveReq();
         }
     }
 
     void ResetMove() {
-        if(m_Move != z_Move) {
-            m_Move = z_Move;
+        if(_Move != z_Move) {
+            _Move = z_Move;
             FireMoveReq();
         }
     }
@@ -81,9 +83,9 @@ public class Player : MonoBehaviour {
         transProto.rotation.z = transform.rotation.z;
 
         transProto.movement = new proto.payload.vector3();
-        transProto.movement.x = m_Move.x;
-        transProto.movement.y = m_Move.y;
-        transProto.movement.z = m_Move.z;
+        transProto.movement.x = _Move.x;
+        transProto.movement.y = _Move.y;
+        transProto.movement.z = _Move.z;
 
         transProto.speed = _speed;
 
