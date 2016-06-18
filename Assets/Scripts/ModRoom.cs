@@ -61,6 +61,7 @@ public class ModRoom  : MonoBehaviour {
             var moveMent = new Vector3(move.x, move.y, move.z);
             go.GetComponent<Box>().SendMessage("SetMove", moveMent);
             go.GetComponent<Box>().SendMessage("SetSpeed", box.trans.speed);
+            go.transform.SetParent(boxHolder.transform);
         }
 
         // 实例化player
@@ -70,7 +71,7 @@ public class ModRoom  : MonoBehaviour {
                                         new Vector3 (pos.x, pos.y, 0),
                                         Quaternion.identity) as GameObject;
 
-            go.transform.SetParent(boxHolder.transform);
+            go.transform.SetParent(playerHolder.transform);
             go.GetComponent<Player>().SendMessage("SetPlayerId", player.player_id);
 
             if(playerMap==null){
@@ -108,7 +109,7 @@ public class ModRoom  : MonoBehaviour {
         GameObject go = GameObject.Instantiate(playerPrefeb,
                                                new Vector3 (pos.x, pos.y, 0),
                                                Quaternion.identity) as GameObject;
-        go.transform.SetParent(boxHolder.transform);
+        go.transform.SetParent(playerHolder.transform);
         go.GetComponent<Player>().SendMessage("SetPlayerId", player.player_id);
 
         playerMap.Add(player.player_id, go);
@@ -119,7 +120,7 @@ public class ModRoom  : MonoBehaviour {
     public void LeaveNtf(byte[] ackBin) {
         var ms2 = new MemoryStream(ackBin, 0, ackBin.Length);
         var RoomLeaveNtf = ProtoBuf.Serializer.Deserialize<room_leave_ntf>(ms2);
-        var player_id =  RoomLeaveNtf.player_id;
+        var player_id = RoomLeaveNtf.player_id;
         GameObject go;
 
         if(playerMap.TryGetValue(player_id, out go)) {
@@ -143,6 +144,7 @@ public class ModRoom  : MonoBehaviour {
         playerHolder = new GameObject("playerHolder");
 
         Debug.Log("what the fuck");
+        RegisterEvent();
     }
 
     void Update () {

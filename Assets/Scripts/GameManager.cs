@@ -9,7 +9,6 @@ public class GameManager : MonoBehaviour {
     void Start () {
         MessageMap.Install();
         _modAgent.RegisterEvent();
-        _modRoom.RegisterEvent();
     }
 
     // Update is called once per frame
