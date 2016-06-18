@@ -37,33 +37,6 @@ namespace proto.payload
       { return global::ProtoBuf.Extensible.GetExtensionObject(ref extensionObject, createIfMissing); }
   }
   
-  [global::System.Serializable, global::ProtoBuf.ProtoContract(Name=@"agent_logout_req")]
-  public partial class agent_logout_req : global::ProtoBuf.IExtensible
-  {
-    public agent_logout_req() {}
-    
-    private int _player_id;
-    [global::ProtoBuf.ProtoMember(1, IsRequired = true, Name=@"player_id", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
-    public int player_id
-    {
-      get { return _player_id; }
-      set { _player_id = value; }
-    }
-    private global::ProtoBuf.IExtension extensionObject;
-    global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
-      { return global::ProtoBuf.Extensible.GetExtensionObject(ref extensionObject, createIfMissing); }
-  }
-  
-  [global::System.Serializable, global::ProtoBuf.ProtoContract(Name=@"agent_logout_ack")]
-  public partial class agent_logout_ack : global::ProtoBuf.IExtensible
-  {
-    public agent_logout_ack() {}
-    
-    private global::ProtoBuf.IExtension extensionObject;
-    global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
-      { return global::ProtoBuf.Extensible.GetExtensionObject(ref extensionObject, createIfMissing); }
-  }
-  
   [global::System.Serializable, global::ProtoBuf.ProtoContract(Name=@"vector3")]
   public partial class vector3 : global::ProtoBuf.IExtensible
   {
@@ -334,6 +307,57 @@ namespace proto.payload
       get { return _trans; }
       set { _trans = value; }
     }
+    private global::ProtoBuf.IExtension extensionObject;
+    global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+      { return global::ProtoBuf.Extensible.GetExtensionObject(ref extensionObject, createIfMissing); }
+  }
+  
+  [global::System.Serializable, global::ProtoBuf.ProtoContract(Name=@"room_move_ntf")]
+  public partial class room_move_ntf : global::ProtoBuf.IExtensible
+  {
+    public room_move_ntf() {}
+    
+    private int _player_id;
+    [global::ProtoBuf.ProtoMember(1, IsRequired = true, Name=@"player_id", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
+    public int player_id
+    {
+      get { return _player_id; }
+      set { _player_id = value; }
+    }
+    private transform _trans;
+    [global::ProtoBuf.ProtoMember(2, IsRequired = true, Name=@"trans", DataFormat = global::ProtoBuf.DataFormat.Default)]
+    public transform trans
+    {
+      get { return _trans; }
+      set { _trans = value; }
+    }
+    private global::ProtoBuf.IExtension extensionObject;
+    global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+      { return global::ProtoBuf.Extensible.GetExtensionObject(ref extensionObject, createIfMissing); }
+  }
+  
+  [global::System.Serializable, global::ProtoBuf.ProtoContract(Name=@"agent_logout_req")]
+  public partial class agent_logout_req : global::ProtoBuf.IExtensible
+  {
+    public agent_logout_req() {}
+    
+    private int _player_id;
+    [global::ProtoBuf.ProtoMember(1, IsRequired = true, Name=@"player_id", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
+    public int player_id
+    {
+      get { return _player_id; }
+      set { _player_id = value; }
+    }
+    private global::ProtoBuf.IExtension extensionObject;
+    global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+      { return global::ProtoBuf.Extensible.GetExtensionObject(ref extensionObject, createIfMissing); }
+  }
+  
+  [global::System.Serializable, global::ProtoBuf.ProtoContract(Name=@"agent_logout_ack")]
+  public partial class agent_logout_ack : global::ProtoBuf.IExtensible
+  {
+    public agent_logout_ack() {}
+    
     private global::ProtoBuf.IExtension extensionObject;
     global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
       { return global::ProtoBuf.Extensible.GetExtensionObject(ref extensionObject, createIfMissing); }
