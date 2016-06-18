@@ -77,7 +77,9 @@ public static class Event  {
     }
 
     private static bool _register(HandleTable handles,
-                                  string eventname, object obj, string funcname)
+                                  string eventname,
+                                  object obj,
+                                  string funcname)
     {
         _unregister(handles, eventname, obj, funcname);
         List<Pair> lst;
@@ -108,7 +110,9 @@ public static class Event  {
     }
 
     private static bool _unregister(HandleTable handles,
-                                    string eventname, object obj, string funcname)
+                                    string eventname,
+                                    object obj,
+                                    string funcname)
     {
         handles.Lock();
         List<Pair> lst;
@@ -134,7 +138,9 @@ public static class Event  {
     }
 
     private static void _fire(HandleTable handles,
-                              LinkedList<EventObj> firedEvents, string eventname, object[] args)
+                              LinkedList<EventObj> firedEvents,
+                              string eventname,
+                              object[] args)
     {
         handles.Lock();
         List<Pair> lst;
@@ -198,19 +204,26 @@ public static class Event  {
     }
 
 
-    public static bool RegisterIn(string eventname, object obj, string funcname) {
+    public static bool RegisterIn(string eventname,
+                                  object obj,
+                                  string funcname) {
         return _register(_handles_in, eventname, obj, funcname);
     }
 
-    public static bool UnRegisterIn(string eventname, object obj, string funcname) {
+    public static bool UnRegisterIn(string eventname,
+                                    object obj,
+                                    string funcname) {
         return _unregister(_handles_in, eventname, obj, funcname);
     }
 
-    public static bool RegisterOut(string eventname, object obj, string funcname) {
+    public static bool RegisterOut(string eventname,
+                                   object obj,
+                                   string funcname) {
         return _register(_handles_out, eventname, obj, funcname);
     }
 
-    public static bool UnRegisterOut(string eventname, object obj,
+    public static bool UnRegisterOut(string eventname,
+                                     object obj,
                                      string funcname) {
         return _unregister(_handles_out, eventname, obj, funcname);
     }

@@ -7,6 +7,8 @@ using System.Net.Sockets;
 public class ModRoom  : MonoBehaviour {
     public Transform m_transform;
 
+    private Transform boxHolder;
+
     public void RegisterEvent() {
         Event.RegisterIn("room_join_req", this, "JoinReq");
         Event.RegisterOut("room_join_ack", this, "JoinAck");
@@ -49,10 +51,14 @@ public class ModRoom  : MonoBehaviour {
                 go = GameObject.Instantiate(prefeb,
                                             new Vector3 (box.pos.x, box.pos.y, 0),
                                             Quaternion.identity) as GameObject;
-                go.transform.SetParent(m_transform);
+                go.transform.SetParent(boxHolder);
             }
 
         }
+    }
+
+    void Awake () {
+        boxHolder = new GameObject("box").transform;
     }
 
     void Start () {

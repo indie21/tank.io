@@ -18,8 +18,7 @@ public class Player : MonoBehaviour {
     void Start () {
         m_spriteRender = GetComponent<SpriteRenderer> ();
         m_transform = GetComponent<Transform> ();
-        Debug.Log ("sprite render");
-        Debug.Log(GameDefine.matrix.x);
+        Debug.Log ("sprite render");        
     }
 
     // Update is called once per frame
@@ -72,4 +71,5 @@ public class Player : MonoBehaviour {
     void Move() {
         m_transform.position += m_Move;
     }
+
 }

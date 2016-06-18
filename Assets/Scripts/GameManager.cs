@@ -3,8 +3,8 @@ using UnityEngine;
 public class GameManager : MonoBehaviour {
 
     public static int _userId;
-    public static ModAgent _modAgent = new ModAgent();
-    public static ModRoom _modRoom = new ModRoom();
+    private static ModAgent _modAgent = new ModAgent();
+    private static ModRoom _modRoom = new ModRoom();
 
     void Start () {
         MessageMap.Install();
