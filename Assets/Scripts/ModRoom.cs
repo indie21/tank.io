@@ -7,18 +7,24 @@ using System.Collections.Generic;
 
 public class ModRoom  : MonoBehaviour {
 
-    static GameObject playerPrefeb = Resources.Load("player",typeof(GameObject)) as GameObject;
-    static GameObject box1Prefeb = Resources.Load("box1",typeof(GameObject)) as GameObject;
-    static GameObject box2Prefeb = Resources.Load("box2",typeof(GameObject)) as GameObject;
-    static GameObject box3Prefeb = Resources.Load("box3",typeof(GameObject)) as GameObject;
+    static GameObject playerPrefeb = Resources.Load("player",typeof(GameObject))
+        as GameObject;
+    static GameObject box1Prefeb = Resources.Load("box1",typeof(GameObject))
+        as GameObject;
+    static GameObject box2Prefeb = Resources.Load("box2",typeof(GameObject))
+        as GameObject;
+    static GameObject box3Prefeb = Resources.Load("box3",typeof(GameObject))
+        as GameObject;
 
     public Transform _transform;
 
     static private GameObject boxHolder;
     static private GameObject playerHolder;
 
-    static private Dictionary<int, GameObject> playerMap = new Dictionary<int, GameObject>();
-    static private Dictionary<int, GameObject> boxMap  = new Dictionary<int, GameObject>();
+    static private Dictionary<int, GameObject> playerMap =
+        new Dictionary<int, GameObject>();
+    static private Dictionary<int, GameObject> boxMap =
+        new Dictionary<int, GameObject>();
 
     public void RegisterEvent() {
         Event.RegisterIn("room_join_req", this, "JoinReq");

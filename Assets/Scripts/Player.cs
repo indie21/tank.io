@@ -64,12 +64,12 @@ public class Player : MonoBehaviour {
 
     void FireMoveReq() {
 
-        // Debug.Log("game manager id "+ GameManager._userId + "move "+ _player_id);
+        // Debug.Log("game manager id "+
+        // GameManager._userId + "move "+ _player_id);
 
         if(_player_id != GameManager._userId){
             return;
         }
-
 
         proto.payload.transform transProto = new proto.payload.transform();
         transProto.position = new proto.payload.vector3();

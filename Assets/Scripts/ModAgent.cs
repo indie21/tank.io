@@ -18,7 +18,8 @@ public class ModAgent {
 
     public void LoginAck(byte[] ackBin) {
         var ms2 = new MemoryStream(ackBin, 0, ackBin.Length);
-        var agentLoginAck = ProtoBuf.Serializer.Deserialize<agent_login_ack>(ms2);
+        var agentLoginAck = ProtoBuf.Serializer.
+            Deserialize<agent_login_ack>(ms2);
         GameManager._userId = agentLoginAck.player_id;
     }
 
