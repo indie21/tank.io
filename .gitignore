@@ -4,3 +4,5 @@ obj
 *.meta
 Library
 Tank.io.app
+.DS_Store
+tank.io.app/

@@ -67,7 +67,7 @@ public class Player : MonoBehaviour {
         // Debug.Log("game manager id "+
         // GameManager._userId + "move "+ _player_id);
 
-        if(_player_id != GameManager._userId){
+        if(_player_id != GameManager._userId) {
             return;
         }
 
