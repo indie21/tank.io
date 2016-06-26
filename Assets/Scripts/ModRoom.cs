@@ -7,14 +7,11 @@ using System.Collections.Generic;
 
 public class ModRoom  : MonoBehaviour {
 
-    static GameObject playerPrefeb = Resources.Load("player",typeof(GameObject))
-        as GameObject;
-    static GameObject box1Prefeb = Resources.Load("box1",typeof(GameObject))
-        as GameObject;
-    static GameObject box2Prefeb = Resources.Load("box2",typeof(GameObject))
-        as GameObject;
-    static GameObject box3Prefeb = Resources.Load("box3",typeof(GameObject))
-        as GameObject;
+    static GameObject playerPrefeb;
+    static GameObject box1Prefeb;
+    static GameObject box2Prefeb;
+    static GameObject box3Prefeb;
+
 
     public Transform _transform;
 
@@ -148,6 +145,17 @@ public class ModRoom  : MonoBehaviour {
 
         boxHolder = new GameObject("boxHolder");
         playerHolder = new GameObject("playerHolder");
+
+
+        playerPrefeb = Resources.Load("player",typeof(GameObject))
+            as GameObject;
+        box1Prefeb = Resources.Load("box1",typeof(GameObject))
+            as GameObject;
+        box2Prefeb = Resources.Load("box2",typeof(GameObject))
+            as GameObject;
+        box3Prefeb = Resources.Load("box3",typeof(GameObject))
+            as GameObject;
+
 
         Debug.Log("what the fuck");
         RegisterEvent();
