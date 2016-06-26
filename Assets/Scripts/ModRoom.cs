@@ -134,10 +134,26 @@ public class ModRoom  : MonoBehaviour {
     }
 
     public void MoveNtf(byte[] ackBin) {
-        var ms2 = new MemoryStream(ackBin, 0, ackBin.Length);
-        var RoomMoveNtf = ProtoBuf.Serializer.Deserialize<room_move_ntf>(ms2);
-
         Debug.Log("MoveNtf");
+        var ms2 = new MemoryStream(ackBin, 0, ackBin.Length);
+        var roomMoveNtf = ProtoBuf.Serializer.Deserialize<room_move_ntf>(ms2);
+        GameObject go;
+
+        if(!playerMap.TryGetValue(roomMoveNtf.player_id, out go)) {
+            return;
+        }
+
+        var go_trans = go.GetComponent<Transform>();
+        var go_player = go.GetComponent<Player>();
+        var proto_pos = roomMoveNtf.trans.position;
+        var proto_rotation = roomMoveNtf.trans.position;
+        var proto_move = roomMoveNtf.trans.movement;
+
+        go_trans.position = new Vector3(proto_pos.x, proto_pos.y, proto_pos.z);
+
+        var go_move = new Vector3(proto_move.x, proto_move.y, proto_move.z);
+        go_player.SendMessage("SetMove", go_move);
+
     }
 
     void Start () {

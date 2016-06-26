@@ -8,9 +8,7 @@ public class Player : MonoBehaviour {
 
     private int m_level = 1;
     private static Vector3 z_Move = new Vector3(0,0,0);
-
     public Vector3 _Move;
-
     private SpriteRenderer m_spriteRender;
     private Transform m_transform;
     public float _speed = 0.05f;
@@ -62,11 +60,10 @@ public class Player : MonoBehaviour {
         m_spriteRender.sprite = levelSprite;
     }
 
+    void RecvMoveNtf(room_move_ntf roomMoveNtf) {
+    }
+
     void FireMoveReq() {
-
-        // Debug.Log("game manager id "+
-        // GameManager._userId + "move "+ _player_id);
-
         if(_player_id != GameManager._userId) {
             return;
         }
