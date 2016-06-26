@@ -23,7 +23,7 @@ public class Follow : MonoBehaviour {
 
 
         if (Input.GetKeyUp("c")){
-            ServerMessage.Instance.Connect("127.0.0.1", 8881);
+            ServerMessage.Instance.Connect("192.168.199.171", 8881);
         }
 
         if (Input.GetKeyUp("f")) {

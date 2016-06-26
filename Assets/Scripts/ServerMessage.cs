@@ -142,8 +142,6 @@ public class ServerMessage
             len = clientSocket.Receive(buf.GetRaw(), 0, HEAD_SIZE,
                                        SocketFlags.None);
 
-            // Debug.Log("receive length:"+ len);
-
             if(len<0)
             {
                 Debug.Log("length error");
@@ -159,7 +157,7 @@ public class ServerMessage
             len = clientSocket.Receive(buf.GetRaw(), 0, payload_length,
                                        SocketFlags.None);
 
-            // Debug.Log("receive length:" + len);
+            Debug.Log("receive length:" + len+ " payload_length：" + payload_length);
 
             Debug.Assert(payload_length == len);
             var ms2 = new MemoryStream(buf.GetRaw(),0,payload_length);
