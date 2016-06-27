@@ -2,18 +2,18 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/ModRoom.cs">
     <Files>
-      <File FileName="Assets/Scripts/ModRoom.cs" Line="16" Column="33" />
+      <File FileName="Assets/Scripts/ModRoom.cs" Line="101" Column="1" />
       <File FileName="Assets/Scripts/ModAgent.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/ByteBuf.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/ServerMessage.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/GameDefine.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/packet.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/GameManager.cs" Line="17" Column="6" />
+      <File FileName="Assets/Scripts/GameManager.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/Player.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/Event.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/payload.cs" Line="1" Column="1" />
       <File FileName="Assets/Plugins/protobuf-net/Serializer.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Follow.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Follow.cs" Line="29" Column="27" />
       <File FileName="Assets/Scripts/MessageMap.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/Handler.cs" Line="1" Column="1" />
     </Files>

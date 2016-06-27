@@ -49,6 +49,7 @@
      <Compile Include="Assets\Scripts\ByteBuf.cs" />
      <Compile Include="Assets\Scripts\Event.cs" />
      <Compile Include="Assets\Scripts\Follow.cs" />
+     <Compile Include="Assets\Scripts\Fps.cs" />
      <Compile Include="Assets\Scripts\GameDefine.cs" />
      <Compile Include="Assets\Scripts\GameManager.cs" />
      <Compile Include="Assets\Scripts\Handler.cs" />
