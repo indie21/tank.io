@@ -11,7 +11,7 @@ public class Player : MonoBehaviour {
     public Vector3 _Move;
     private SpriteRenderer m_spriteRender;
     private Transform m_transform;
-    public float _speed = 0.05f;
+    public float _speed = 0f;
     public int _player_id;
 
     void Test() {
@@ -19,6 +19,7 @@ public class Player : MonoBehaviour {
 
     void Awake() {
         ResetMove();
+        _speed=0.05f;
     }
 
        // Use this for initialization
