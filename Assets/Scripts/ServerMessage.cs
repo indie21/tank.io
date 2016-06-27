@@ -153,13 +153,23 @@ public class ServerMessage
             int payload_length = buf.GetInt(0);
 
             Debug.Assert(payload_length < BUFF_SIZE);
+            int want = payload_length;
+            int lenAll= 0 ;
+            SocketError socketError;
 
-            len = clientSocket.Receive(buf.GetRaw(), 0, payload_length,
-                                       SocketFlags.None);
+            while (want>0)
+            {
+                len = clientSocket.Receive(buf.GetRaw(), lenAll, want,
+                                     SocketFlags.None, out socketError);
+                want -= len;
+                lenAll += len;
+            }
 
-            Debug.Log("receive length:" + len+ " payload_length：" + payload_length);
+         
 
-            Debug.Assert(payload_length == len);
+            Debug.Log("receive length:" + lenAll+ " payload_length：" + payload_length);
+
+            Debug.Assert(payload_length == lenAll);
             var ms2 = new MemoryStream(buf.GetRaw(),0,payload_length);
 
             var protoPacket = ProtoBuf.Serializer.Deserialize<packet>(ms2);
