@@ -45,6 +45,7 @@ public class Player : MonoBehaviour {
     void SetMove(Vector3 vec3) {
         if(_Move != vec3){
             _Move = vec3;
+            SetSpeed();
             FireMoveReq();
         }
     }
@@ -52,6 +53,7 @@ public class Player : MonoBehaviour {
     void ResetMove() {
         if(_Move != z_Move) {
             _Move = z_Move;
+            SetSpeed();
             FireMoveReq();
         }
     }
