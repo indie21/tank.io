@@ -153,6 +153,7 @@ public class ModRoom  : MonoBehaviour {
 
         var go_move = new Vector3(proto_move.x, proto_move.y, proto_move.z);
         go_player.SendMessage("SetMove", go_move);
+        go_player.SendMessage("SetSpeed");
 
     }
 

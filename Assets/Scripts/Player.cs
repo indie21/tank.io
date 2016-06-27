@@ -19,6 +19,10 @@ public class Player : MonoBehaviour {
 
     void Awake() {
         ResetMove();
+        SetSpeed();
+    }
+
+    void SetSpeed() {
         _speed=0.05f;
     }
 
