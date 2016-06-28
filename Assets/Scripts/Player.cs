@@ -26,7 +26,7 @@ public class Player : MonoBehaviour {
         _speed=0.05f;
     }
 
-       // Use this for initialization
+    // Use this for initialization
     void Start ()  {
         m_spriteRender = GetComponent<SpriteRenderer> ();
         m_transform = GetComponent<Transform> ();
@@ -99,8 +99,10 @@ public class Player : MonoBehaviour {
         _player_id = playerid;
     }
 
-	void FixedUpdate() {
-		m_transform.position += _Move*_speed;
-	}
-		
+    // 逻辑帧16 fps
+    // 可以设置Edit->Project Setting->time  找到Fixed timestep。就可以修改了。
+    void FixedUpdate() {
+        m_transform.position += _Move*_speed;
+    }
+
 }
