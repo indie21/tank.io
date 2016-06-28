@@ -1,8 +1,8 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/ModRoom.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Fps.cs">
     <Files>
-      <File FileName="Assets/Scripts/ModRoom.cs" Line="101" Column="1" />
+      <File FileName="Assets/Scripts/ModRoom.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/ModAgent.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/ByteBuf.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/ServerMessage.cs" Line="1" Column="1" />
@@ -16,6 +16,7 @@
       <File FileName="Assets/Scripts/Follow.cs" Line="29" Column="27" />
       <File FileName="Assets/Scripts/MessageMap.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/Handler.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Fps.cs" Line="24" Column="10" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

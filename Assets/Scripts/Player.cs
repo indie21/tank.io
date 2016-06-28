@@ -39,7 +39,6 @@ public class Player : MonoBehaviour {
             LevelUp ();
         }
 
-        m_transform.position += _Move*_speed;
     }
 
     void SetMove(Vector3 vec3) {
@@ -99,4 +98,9 @@ public class Player : MonoBehaviour {
     void SetPlayerId(int playerid) {
         _player_id = playerid;
     }
+
+	void FixedUpdate() {
+		m_transform.position += _Move*_speed;
+	}
+		
 }

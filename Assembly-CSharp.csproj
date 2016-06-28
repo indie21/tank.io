@@ -53,6 +53,7 @@
      <Compile Include="Assets\Scripts\GameDefine.cs" />
      <Compile Include="Assets\Scripts\GameManager.cs" />
      <Compile Include="Assets\Scripts\Handler.cs" />
+     <Compile Include="Assets\Scripts\Logic.cs" />
      <Compile Include="Assets\Scripts\MessageMap.cs" />
      <Compile Include="Assets\Scripts\ModAgent.cs" />
      <Compile Include="Assets\Scripts\ModRoom.cs" />
